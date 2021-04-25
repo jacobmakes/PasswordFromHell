@@ -1,0 +1,2 @@
+S👨🏿👨🏽‍🍳👨🏼‍🍳DϿ👨🏾‍🍳👨🏻‍🍳6S42𰻝D8675309a9035768D𰻝24S6👨🏻‍🍳👨🏾‍🍳ϿD👨🏼‍🍳👨🏽‍🍳👨🏿S
+if(t.match(/(?<=([A-Z].{0,2}))[A-Z]/u)){return 'Capital letters cannot be anwhere near eachother'}
