@@ -153,7 +153,7 @@ function handleClose() {
         <DialogTitle id="alert-dialog-title">{"Secure password chosen"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            well done
+            We'll E-mail you in 3 weeks to reset your password to a more secure one.
           </DialogContentText>
         </DialogContent>
       </Dialog>
@@ -165,13 +165,14 @@ const top1000 = ['puzzle', 'game', 'password hell', 'impossible puzzle', 'passwo
 
 function checkpass(t){ //t password input as a string
 
-// example t = '👨🏾‍🍳pÂs👩🏿‍🦳'
+// we'll use t = '👨🏾‍🍳pÂs👩🏿‍🦳' as our example string
+
 //complex unicode characters are made up of the basic elements and modifiers
-//for example has the base A and the ◌̂  that modifies it.
+//for example: Â has the base A and the ◌̂  that modifies it.
 
 const au =t.split(''); 
 //this basic split function. splits the string into an array of unicode characters and modifiers
-//output: ["\ud83d","\udc68","\ud83c","\udffe","‍","\ud83c","\udf73","p","A","̂","s","\ud83d","\udc69","\ud83c","\udfff","‍","\ud83e","\uddb3"]
+//example output: ["\ud83d","\udc68","\ud83c","\udffe","‍","\ud83c","\udf73","p","A","̂","s","\ud83d","\udc69","\ud83c","\udfff","‍","\ud83e","\uddb3"]
 //5 characters turn into 18
 
  const a = [...t];
@@ -183,7 +184,7 @@ const au =t.split('');
  //this 3rd party library is the best I could find but still struggles to split some emojis
  //[ "👨🏾‍🍳", "p", "Â", "s", "👩🏿‍", "🦳" ] length 6
 
- //console.log(t,a,au,abest);
+ console.log(t,a,au,abest);
 
  const ar = abest.reverse();
  let lowcount=0; //lower case
@@ -220,18 +221,26 @@ if(top1000.find(e=>t.includes(e)) !==undefined){return 'Your password cannot con
 if(letcount <8 ){return 'Your password must contain at least 8 letters'}
 if(!t.match(/[\u0370-\u03FF]/u)){return 'Your password must contain a greek letter'}
 //unicode has a series of character blocks. The range here is all the greek letters
-//notice the u, this means match unicode characters
+//notice the /u, this means match unicode characters
 ana.logEvent('greek letter completed'); //google analytics
 if(!t.match(/[🌍-🛌🏿]/u)){return 'Your password must contain an emoji'}
 //this doesn't actually include all emojis because they are spaced out throughout unicode
 ana.logEvent('emoji completed');
 if(!t.match(/8675309/u)){return 'Your password needs Jenny\'s number'}
 ana.logEvent('jenny completed');
+if(au.includes('\uddb1')){return 'Your emojis cannot have curly hair'}
+if(au.includes('\uddb0')){return 'Your emojis cannot have ginger hair'}
+if(au.includes('\uddb3')){return 'Your emojis cannot have white hair'}
+//The au variable is the array of word split completely into unicode characters and modifiers 
+//this means the hair colour modifier is split from the single emoji character and can be checked
+
+
 if(au.join('') !== ar.join('') ){return 'Your password must be a palindrome'}
 //because this relies on exact splitting our example won't actually work
  //[ "👨🏾‍🍳", "p", "Â", "s", "👩🏿‍", "🦳" ]
  // reversed: ["👩🏿‍", "🦳", "s", "Â", "p", "👨🏾‍🍳"]
  ana.logEvent('palindrome completed');
+
 let numOr0 = n => isNaN(n) ? 0 : parseInt(n);
 if(t.match(/[A-Z](?=(.{0,2}[A-Z]))/u)){return 'Capital letters cannot be anywhere near eachother'}
 // ?= means after the matched letter
@@ -246,10 +255,13 @@ if(!t.match(/42/u)){return 'Your password must contain the meaning of life'}
 if(lowcount !==1 ){return 'Your password cannot contain more than one lower case letter'}
 if(!au.includes('\udfff')|| !au.includes('\udffe')||!au.includes('\udffd')||!au.includes('\udffc')||!au.includes('\udffb'))
 {return 'Your emojis aren\'t diverse enough'}
-//Here we use the face the .split() method splits the unicode modifies out from the characters
-//these modifiers are for skin colour so each
+//this works the same way as hair colour but checks for one of each skin colour.
+
+
 ana.logEvent('diverse complete');
 if(!t.match(/𰻝/u)){return 'Your password must contain shaanxi noodles'}
+//some unicode characters are so rare they don't seem to render anytngi other than a blank box
+//on any devices, but that sqaure still holds the correct unicode.
 
 ana.logEvent('WIN');
 return 'checking password'
