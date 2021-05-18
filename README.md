@@ -1,6 +1,6 @@
 # Password From Hell
 
-This site is live to play at [passwordfromhell.com](https://passwordfromhell.com/). I'd Recomend playing it first to get an idea of the password requirements. After that the relvant parts of the game can be found in [SignIn.js](src/SignIn.js). I've commented each section to help if you're looking to learn before you do I'd reccomend reading or little bit about regualr expressions (regEx) or you won't understand most of it.
+This site is live to play at [passwordfromhell.com](https://passwordfromhell.com/). I'd Recomend playing it first to get an idea of the password requirements. After that the relvant parts of the game can be found in [SignIn.js](src/SignIn.js). I've commented each section to help if you're looking to learn before you do I'd reccomend reading or little bit about regular expressions (regEx) or you won't understand most of it.
 
 ## The games creation
 
